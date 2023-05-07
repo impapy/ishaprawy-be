@@ -45,7 +45,7 @@ class AdminResolver {
         { ...omit(['username', 'password'], input), isSuperAdmin, isSuspended: false, userType: UserType.ADMIN },
         session,
       )
-      await this.accountService.add({ user: admin._id, ...input, stage: Stage.ASSISTANT, userType: UserType.ADMIN }, session)
+      await this.accountService.add({ user: admin._id, ...input, userType: UserType.ADMIN }, session)
       return admin
     })
   }

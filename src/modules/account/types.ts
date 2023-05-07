@@ -26,7 +26,7 @@ export class Account {
 
   password?: string
 
-  stage: Stage
+  stage?: Stage
 
   userType: UserType
 
@@ -141,7 +141,7 @@ export class AccountAddArgs {
 
   userType: UserType
 
-  stage: Stage
+  stage?: Stage
 
   password: string
 }
