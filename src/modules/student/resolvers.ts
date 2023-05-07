@@ -10,6 +10,7 @@ import { AccountService } from '../account/Account'
 import { CheckIsAdmin } from '../../common/middleware/checkIsAdmin'
 import { Authenticate } from '../../common/middleware/authenticate'
 import { CheckItsOwnAccountOrAdmin } from '../../common/middleware/checkItsOwnAccountOrAdmin'
+import { parsePhoneNumber } from '../../common/helpers'
 import { StudentService } from './Student'
 import { Student, StudentAddInput, StudentEditInput, StudentsGetInput, StudentsGetResponse } from './types'
 
@@ -27,8 +28,11 @@ export class StudentResolver {
 
     let student: Student | null = null
     await transaction(async (session) => {
-      const studentArgs = omit(['username', 'password', 'phone'], input)
-      student = await this.studentService.add({ ...studentArgs, userType: UserType.STUDENT, isActive: true }, session)
+      const studentArgs = omit(['username', 'password'], input)
+      student = await this.studentService.add(
+        { ...studentArgs, ...(studentArgs.phone && { phone: parsePhoneNumber(studentArgs.phone) }), userType: UserType.STUDENT, isActive: true },
+        session,
+      )
 
       await this.accountService.add(
         {

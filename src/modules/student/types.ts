@@ -18,25 +18,7 @@ export enum StudentsSort {
   OLDEST = 'OLDEST',
 }
 
-export enum StudentStatus {
-  ACTIVE = 'ACTIVE',
-  BANNED = 'BANNED',
-}
-registerEnumType(StudentStatus, { name: 'StudentStatus' })
 registerEnumType(StudentsSort, { name: 'StudentsSort' })
-
-@ObjectType()
-@InputType('ReportTestInput')
-export class ReportTest {
-  @Field(() => ObjectId)
-  testId: ObjectId
-
-  @Field(() => Int)
-  degre: number
-
-  @Field(() => Boolean, { nullable: true })
-  issuccessfull?: boolean
-}
 
 @ObjectType()
 export class Student {
@@ -49,8 +31,8 @@ export class Student {
   @Field()
   email: string
 
-  @Field(() => [ReportTest], { nullable: true })
-  reportsTest?: ReportTest[]
+  @Field({ nullable: true })
+  phone?: string
 
   @Field()
   createdAt: Date
@@ -83,9 +65,9 @@ export class StudentAddInput {
   @Field()
   password: string
 
-  @Field(() => [ReportTest], { nullable: true })
-  @ValidateNested()
-  reportsTest?: ReportTest[]
+  @IsPhoneNumber('EG')
+  @Field({ nullable: true })
+  phone?: string
 
   userType: UserType
 
@@ -109,9 +91,6 @@ export class StudentEditInput {
   @Field({ nullable: true })
   name?: string
 
-  @Field(() => [ReportTest], { nullable: true })
-  reportsTest: ReportTest[]
-
   @Field({ nullable: true })
   isActive?: boolean
 }
@@ -129,13 +108,4 @@ export class StudentsFilterInput extends ResourcesFilterInput {
 export class StudentsGetInput extends ResourcesGetInput(StudentsFilterInput) {
   @Field(() => StudentsSort, { defaultValue: StudentsSort.NEWEST })
   sort: StudentsSort = StudentsSort.NEWEST
-}
-
-@InputType()
-export class StudentsEditStatusInput {
-  @Field()
-  StudentId: ObjectId
-
-  @Field(() => StudentStatus)
-  status: StudentStatus
 }
