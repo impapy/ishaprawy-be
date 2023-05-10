@@ -33,6 +33,9 @@ export default {
   INCORRECT_CREDENTIALS: { en: 'Incorrect username or password', ar: 'خطأ في اسم المستخدم/ كلمة المرور' },
   ACCOUNT_SUSPENDED: { en: 'Account Suspended', ar: 'الحساب مغلق' },
   UNAUTHORIZED: { en: 'Unauthorized Action', ar: 'خطوة غير مسموح بها' },
+
+  Exame_NOT_FOUND: { en: 'exame not found', ar: 'الاختبار غير موجود' },
+
   INCORRECT_PASSWORD: { en: 'Incorrect password', ar: 'كلمة مرور خاطئة' },
   CODE_EXPIRED: { en: 'Code expired', ar: 'انتهت صلاحية الكود' },
   FILE_TYPE_NOT_ALLOWED: { en: 'File Type not allowed', ar: 'نوع الملف غير مسموح به' },

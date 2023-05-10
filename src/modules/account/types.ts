@@ -13,7 +13,6 @@ export enum Stage {
   FIRST = 'FIRST',
   SECOND = 'SECOND',
   THIRD = 'THIRD',
-  ASSISTANT = 'ASSISTANT',
 }
 
 registerEnumType(UserType, { name: 'userType' })

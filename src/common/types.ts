@@ -89,6 +89,7 @@ export enum DBCollections {
   STUDENT = 'student',
   ACCOUNTS = 'accounts',
   ADMINS = 'admins',
+  MONTHLY_EXAMES = 'monthlyExames',
 }
 
 @ObjectType()
